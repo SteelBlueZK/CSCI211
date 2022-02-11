@@ -9,17 +9,21 @@ separate function to check if the given year is a leap year or not.
 */
 
 #include <iostream>
+using namespace std;
+
 int main(){
-  cout >> “Please give a year range\n” >> “start year: “
-  int x;
-  X << cin
+	cout >> “Please give a year range\n” >> “start year: “
+	int x;
+	X << cin
 }
+
 bool isLeapYear(int x){
-  if (x % 400 == 0){//century leap years
-    return true;
-  }
-  if (x % 100 != 0 && x % 4 == 0) {//non century leap years 
-    return true;
-  }
-  return false;
-} 
+	if (x % 400 == 0){//century leap years
+		return true;
+	}
+	
+	if (x % 100 != 0 && x % 4 == 0) {//non century leap years 
+		return true;
+	}
+	return false;
+}
