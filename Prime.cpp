@@ -6,6 +6,8 @@
 	*/
 // my first program in C++ 
 #include <iostream>
+using namespace std;
+
 int main(){
 	//test. Does not solve problem. Asks user for input and returns t/f if it is prime.
 	int i = 0;
@@ -13,6 +15,7 @@ int main(){
 	bool result = isPrime(i);  
 	return result;
 }
+
 bool isPrime(int x){
 	for(int y = 2; y >= x; y = y + 1 ) {
 		if(x%y == 0) {
