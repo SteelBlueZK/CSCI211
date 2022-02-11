@@ -8,22 +8,26 @@ function to check out perfectness of an integer.
   */
 // my first program in C++
 #include <iostream>
+using namespace std;
+
 int main(){
-  //test. Does not solve problem.
-  int i = 0;
-  std::cin >> i;
-  bool result = isPerfect(i);
-  return result;
+	//test. Does not solve problem.
+	
+	int i = 0;
+	std::cin >> i;
+	bool result = isPerfect(i);
+	return result;
 }
+
 bool isPerfect(int x) {
-  //MAX_INT is 2147483647
-  //https://en.wikipedia.org/wiki/List_of_Mersenne_primes_and_perfect_numbers states perfect numbers within this bound are:
-  //6, 28, 496, 8128, 33550336, next is 8589869056 which is out of bounds for int.
-  int foo [5] = { 6, 28, 496, 8128, 33550336};
-  for (int i : foo ) {
-    if x == i  {
-      return true;
-    }
-  }
-  return false;
+	//MAX_INT is 2147483647
+	//https://en.wikipedia.org/wiki/List_of_Mersenne_primes_and_perfect_numbers states perfect numbers within this bound are:
+	//6, 28, 496, 8128, 33550336, next is 8589869056 which is out of bounds for int.
+	int foo [5] = { 6, 28, 496, 8128, 33550336};
+	for (int i : foo ) {
+		if x == i  {
+			return true;
+		}
+	}
+	return false;
 }
