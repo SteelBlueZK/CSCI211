@@ -10,15 +10,6 @@ function to check out perfectness of an integer.
 #include <iostream>
 using namespace std;
 
-int main(){
-	//test. Does not solve problem.
-	
-	int i = 0;
-	std::cin >> i;
-	bool result = isPerfect(i);
-	return result;
-}
-
 bool isPerfect(int x) {
 	//MAX_INT is 2147483647
 	//https://en.wikipedia.org/wiki/List_of_Mersenne_primes_and_perfect_numbers states perfect numbers within this bound are:
@@ -30,4 +21,13 @@ bool isPerfect(int x) {
 		}
 	}
 	return false;
+}
+
+int main(){
+	//test. Does not solve problem.
+	
+	int i = 0;
+	std::cin >> i;
+	bool result = isPerfect(i);
+	return result;
 }
