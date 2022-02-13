@@ -24,18 +24,19 @@ bool isPerfect(int x) {
 }
 
 int main(){
-	int i = 0;
+	int input = 0;
 	std::cout << "Please enter a positive Interger: ";
-	std::cin >> i;
+	std::cin >> input;
 	std::cout << "\n";
 
 	//TODO: print all positive intergers between 0 and that are perfect numbers.
-	std::cout << "All the perfect numbers between 0 and " << i << " inclusive are: ";
-	while ( i > 0 ) {
-		if (isPerfect(i)) {
+	std::cout << "All the perfect numbers between 0 and " << i << " inclusive are";
+	int temp = 0;
+	while ( temp < input ) {
+		if (isPerfect(temp)) {
 			std::cout << ", " << i ;
 		}
-		i--;
+		temp++;
 	}
 	std::cout << "" ;
 	return 0;
