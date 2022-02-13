@@ -27,7 +27,9 @@ int main(){
 	//test. Does not solve problem.
 	
 	int i = 0;
+	std::cout << "Please enter Number" << endl;
 	std::cin >> i;
 	bool result = isPerfect(i);
+	std::cout << result;
 	return result;
 }
