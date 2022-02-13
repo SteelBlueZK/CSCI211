@@ -30,11 +30,11 @@ int main(){
 	std::cout << "\n";
 
 	//TODO: print all positive intergers between 0 and that are perfect numbers.
-	std::cout << "All the perfect numbers between 0 and " << i << " inclusive are";
+	std::cout << "All the perfect numbers between 0 and " << input << " inclusive are";
 	int temp = 0;
-	while ( temp < input ) {
+	while ( temp <= input ) {
 		if (isPerfect(temp)) {
-			std::cout << ", " << i ;
+			std::cout << ", " << temp ;
 		}
 		temp++;
 	}
