@@ -25,7 +25,7 @@ bool isPerfect(int x) {
 	//6, 28, 496, 8128, 33550336, next is 8589869056 which is out of bounds for int.
 	int foo [5] = { 6, 28, 496, 8128, 33550336};
 	for (int i : foo ) {
-		if x == i  {
+		if (x == i)  {
 			return true;
 		}
 	}
