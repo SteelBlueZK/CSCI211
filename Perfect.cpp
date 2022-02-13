@@ -8,7 +8,7 @@ function to check out perfectness of an integer.
   */
 // my first program in C++
 #include <iostream>
-using namespace std;
+#include <string>
 
 bool isPerfect(int x) {
 	//MAX_INT is 2147483647
@@ -24,12 +24,19 @@ bool isPerfect(int x) {
 }
 
 int main(){
-	//test. Does not solve problem.
-	
 	int i = 0;
-	std::cout << "Please enter Number" << endl;
+	std::cout << "Please enter a positive Interger: ";
 	std::cin >> i;
-	bool result = isPerfect(i);
-	std::cout << result;
-	return result;
+	std::cout << "\n";
+
+	//TODO: print all positive intergers between 0 and that are perfect numbers.
+	std::cout << "All the perfect numbers between 0 and " << i << " inclusive are: ";
+	while ( i > 0 ) {
+		if (isPerfect(i)) {
+			std::cout << ", " << i ;
+		}
+		i--;
+	}
+	std::cout << "" ;
+	return 0;
 }
