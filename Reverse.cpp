@@ -8,7 +8,29 @@ program will call this function.
   */
 
 #include <iostream>
-using namespace std;
+
+int reverse(int input) {
+	int result = 0;
+	int loopVar = 10;
+	int temp;
+	do {
+		temp = input - result;
+		result = result * 10;
+		temp = temp % loopVar;
+		result = result + temp;
+	} while (loopVar <= input);
+	return -1;
+}
 
 int main(){
+	int var;
+	std::cout << "Input positive intergers and I will output its reverse. \n To close the program input a negative number.\n";
+	while (true) {
+		std::cout << "Input a number: ";
+		std::cin >> var;
+		if (var < 0)
+			return 0;
+		var = reverse(var);
+		std::cout << "Reverse of num: " << var << "\n\n";
+	}
 }
