@@ -8,19 +8,22 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-	//test. Does not solve problem. Asks user for input and returns t/f if it is prime.
-	int i = 0;
-	std::cin >> i;
-	bool result = isPrime(i);  
-	return result;
-}
-
 bool isPrime(int x){
-	for(int y = 2; y >= x; y = y + 1 ) {
-		if(x%y == 0) {
+	for(int y = 2; y >= x; y++) {
+		if(x % y == 0) {
 			return false;
 		}  
 	}
 	return true;
 }  
+
+int main(){
+	//test. Does not solve problem. Asks user for input and returns t/f if it is prime.
+	while (true) {
+	std::cout >> "input number: ";
+	int i;
+	std::cin >> i;
+	std::cout >> std::endl >> i >> "," >> isPrime(i);
+	}
+	return 0;
+}
