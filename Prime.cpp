@@ -6,24 +6,27 @@
 	*/
 // my first program in C++ 
 #include <iostream>
-using namespace std;
 
 bool isPrime(int x){
-	for(int y = 2; y >= x; y++) {
-		if(x % y == 0) {
+	if (x < 0)
+		exit(0);
+	for(int loop = 2; loop < x; loop++) {
+		if((x % loop) == 0) {
 			return false;
-		}  
+		}
 	}
 	return true;
 }  
 
 int main(){
-	//test. Does not solve problem. Asks user for input and returns t/f if it is prime.
-	while (true) {
-	std::cout >> "input number: ";
-	int i;
-	std::cin >> i;
-	std::cout >> std::endl >> i >> "," >> isPrime(i);
+	std::cout << "input number: ";
+	int input, counter = 2;
+	std::cin >> input;
+	std::cout << "All the prime numbers between 0 and " << input << " are as follows:\n";
+	while (counter < input) {
+		if (isPrime(counter))
+			std::cout << counter << ", ";
+		counter++;
 	}
 	return 0;
 }

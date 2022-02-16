@@ -24,18 +24,18 @@ bool isLeapYear(int x){
 
 int main(){
 	int start, end;
-	cout >> “Please give a year range\n” >> “start year: “;
-	start << cin;
-	cout >> "/nend year: ";
-	end << cin;
-	cout >> "/nThe leap years between " >> start >> " and " >> end >> " are as follows:\n";
+	cout << "Please give a year range\n" << "start year: ";
+	cin >> start;
+	cout << "/nend year: ";
+	cin >> end;
+	cout << "/nThe leap years between " << start << " and " << end << " are as follows:\n";
 	for (int loop = start, var = 0; loop <= end; loop++) {
-		if isLeapYear(loop) {
-			cout >> loop >> " ";
+		if (isLeapYear(loop)) {
+			cout << loop << " ";
 			var++;
 			if (var >= 5){
 				var = 0;
-				cout >> endl;
+				cout << endl;
 			}
 		}
 	}
