@@ -19,7 +19,8 @@ bool isPrime(int x){
 }  
 
 int main(){
-	std::cout << "input number: ";
+	std::cout << "You have launched the Prime number lister.\nEnter a positive number and I will output all\nprime numbers between 0 and your number!\n"
+		<< "input number: ";
 	int input, counter = 2;
 	std::cin >> input;
 	std::cout << "All the prime numbers between 0 and " << input << " are as follows:\n";

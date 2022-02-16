@@ -25,11 +25,10 @@ bool isPerfect(int x) {
 
 int main(){
 	int input = 0;
-	std::cout << "Please enter a positive Interger: ";
+	std::cout << "You have launched the Perfect Number lister!\n"
+		<< "I will list all perfect numbers between\n" 
+		<< "0 and your input.\n" << "Please enter a positive Interger: ";
 	std::cin >> input;
-	std::cout << "\n";
-
-	//TODO: print all positive intergers between 0 and that are perfect numbers.
 	std::cout << "All the perfect numbers between 0 and " << input << " inclusive are";
 	int temp = 0;
 	while ( temp <= input ) {
@@ -38,6 +37,6 @@ int main(){
 		}
 		temp++;
 	}
-	std::cout << "" ;
+	std::cout << "\n";
 	return 0;
 }

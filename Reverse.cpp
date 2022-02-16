@@ -10,27 +10,28 @@ program will call this function.
 #include <iostream>
 
 int reverse(int input) {
-	int result = 0;
-	int loopVar = 10;
-	int temp;
-	do {
-		temp = input - result;
+	int result = 0, temp;
+	for (int c = 0; c < 99; c++) {
+		result = result + input % 10;
+		input = input / 10;
+		if (input <= 0)
+			break;
 		result = result * 10;
-		temp = temp % loopVar;
-		result = result + temp;
-	} while (loopVar <= input);
-	return -1;
+	}
+	return result;
 }
 
 int main(){
 	int var;
-	std::cout << "Input positive intergers and I will output its reverse. \n To close the program input a negative number.\n";
+	std::cout << "Yo have launched the Reverse Number Program!\n"
+		<< "Input positive intergers and I will output its reverse.\n"
+		<< "To close the program input a negative number.\n";
 	while (true) {
-		std::cout << "Input a number: ";
+		std::cout << "\nInput a number: ";
 		std::cin >> var;
 		if (var < 0)
 			return 0;
 		var = reverse(var);
-		std::cout << "Reverse of num: " << var << "\n\n";
+		std::cout << "Reverse of num: " << var << "\n";
 	}
 }
