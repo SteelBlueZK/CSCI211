@@ -49,8 +49,8 @@ void mult(int ret[], int r1[], int r2[]) {
 	reduce(ret);
 }
 void div(int ret[], int r1[], int r2[]){
-	// You don't nessisarilly always end up with a rational number.
-	std::cout << "no action taken (fuction div)\n";
+	ret[0] = r[0] * r2[1];
+	ret[1] = r[1] * r2[0];
 	reduce(ret);
 }
 int main(){
