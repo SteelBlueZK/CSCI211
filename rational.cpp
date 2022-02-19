@@ -1,47 +1,69 @@
 #include <iostream>
-#include <string>
+#include <stdlib.h>
 
-struct Rat {
-	int numerator;
-	int denomonator;
+int lcm(int,int);
+int gcf(int,int);
+
+class Rat {
+	private:
+		int numerator;
+		int denomonator;
+		void setNum(int n);
+		void setDenom(int d);
+		void reduce();
+	public:
+		Rat();
+		void input();
+		void output();
+		Rat add(Rat r);
+		Rat sub(Rat r);
+		Rat mult(Rat r);
+		Rat div(Rat r);
+		int getNum();
+		int getDenom();
 };
 
-void input(int r[]) {
-	std::cout << "Please enter numerator: ";
-	std::cin >> r[0];	
-	std::cout << "\n" << "Please enter denominator: ";
-	std::cin >> r[1];	
+
+int main(){
+	/*
+	int a,b,out,end;
+	while (end != 0) {
+	std::cout << "compute lcm. Input 2 numbers.";
+	std::cin >> a >> b;
+	std::cout << "computing lcm. \n";
+	out = lcm(a,b);
+	std::cout << "lcm is: " << out << "\n enter 0 to exit, else enter any int other than 0: ";
+	std::cin >> end;
+	}
+	*/
+	Rat r1, r2;
+	r1.input();
+	r1.output();
+	r2.input();
+	r2.output();
+	Rat sum, dif, prod, quot;
+	std::cout << "addition is :" << std::endl;
+	sum = r1.add(r2);
+	sum.output();
+	std::cout << "subtraction is :" << std::endl;
+	dif = r1.sub(r2);
+	dif.output();
+	std::cout << "multiplication is :" << std::endl;
+	prod = r1.mult(r2);
+	prod.output();
+	std::cout << "division is :" << std::endl;
+	quot = r1.div(r2);
+	quot.output();
+
+	std::cout << "\nProgram end.\n";
+	return 0;
 }
 
-Rat input(Rat& var) {	
-	std::cout << "Please enter numerator: ";
-	std::cin >> var.numerator;	
-	std::cout << "\n" << "Please enter denominator: ";
-	std::cin >> var.denomonator;
-	return var;
-}
-Rat input() {	
-	Rat var;
-	std::cout << "Please enter numerator: ";
-	std::cin >> var.numerator;	
-	std::cout << "\n" << "Please enter denominator: ";
-	std::cin >> var.denomonator;
-	return var;
-}
-
-void output(int r[]){
-	std::cout << "Your rational number is:\n"
-	       	<< r[0] << " / " << r[1] << std::endl;
-}
-Rat& output(Rat &r){	
-	std::cout << "Your rational number is:\n"
-	       	<< r.numerator << " / " << r.denomonator << std::endl;
-	return r;
-}
-int lcm(int a, int b){
-	/*if (a < 1 || b < 1) {
-		return -1;
-	}*/
+int lcm(int i1, int i2){
+	int a = abs(i1), b = abs(i2);
+	if (a == 0 || b == 0) {
+		return 0;
+	}
 	int amult = a, bmult = b;
 	while (amult != bmult){
 		if (amult > bmult) {
@@ -52,99 +74,65 @@ int lcm(int a, int b){
 	}
 	return amult;
 }
-int lcm(Rat r){
-	int amult = r.numerator, bmult = r.denomonator;
-	while (amult != bmult){
-		if (amult > bmult) {
-			bmult = bmult + r.denomonator;
-		} else {
-			amult = amult + r.numerator;
-		}
-	}
-	return amult;
-}
 int gcf(int a, int b) {
 	return (a * b) / lcm(a,b);
 }
-int gcf(Rat r) {
-	return (r.numerator * r.denomonator) / lcm(r);
-}
 
-void reduce(int r[]){
-	int x = gcf(r[0],r[1]);
-	r[0] = r[0] / x;
-	r[1] = r[1] / x;
+Rat::Rat(){
 }
-Rat reduce(Rat r){
-	int x = gcf(r);
-	r.numerator = r.numerator / x;
-	r.denomonator = r.denomonator / x;
-	return r;
+void Rat::input() {	
+	std::cout << "Input Rational number." << std::endl;
+	std::cout << "Please enter numerator: ";
+	std::cin >> numerator;	
+	std::cout << "\n" << "Please enter denominator: ";
+	std::cin >> denomonator;
 }
-void add(int ret[], int r1[], int r2[]) {
-	ret[1] = lcm(r1[1],r2[1]);
-	ret[0] = (r1[0]*(ret[1]/r1[1])) + (r2[0]*(ret[1]/r2[1]));
-	reduce(ret);
+void Rat::output(){	
+	std::cout << "Your rational number is:\n"
+	       	<< numerator << " / " << denomonator << std::endl;
 }
-Rat add(Rat r1, Rat r2) {
+int Rat::getNum(){
+	return numerator;
+}
+int Rat::getDenom(){
+	return denomonator;
+}
+void Rat::setNum(int n){
+	numerator = n;
+}
+void Rat::setDenom(int d){
+	denomonator = d;
+}
+void Rat::reduce(){
+	int x = gcf(numerator,denomonator);
+	numerator = numerator / x;
+	denomonator = denomonator / x;
+}
+Rat Rat::add(Rat r) {
 	Rat ret;
-	ret.denomonator = lcm(r1.denomonator , r2.denomonator);
-	ret.numerator = ( r1.numerator * ( ret.denomonator / r1.denomonator) ) + ( r2.numerator * ( ret.denomonator / r2.denomonator ));
-	return reduce(ret);
+	ret.denomonator = lcm(denomonator , r.getDenom());
+	ret.numerator = ( numerator * ( ret.getDenom() / denomonator) ) + ( r.getNum() * ( ret.getDenom() / r.getDenom() ));
+	ret.reduce();
+	return ret;
 }
-void sub(int ret[], int r1[], int r2[]) {
-	ret[1] = lcm(r1[1],r2[1]);
-	ret[0] = (r1[0]*(ret[1]/r1[1])) - (r2[0]*(ret[1]/r2[1]));
-	reduce(ret);
-}
-Rat sub(Rat r1, Rat r2) {
+Rat Rat::sub(Rat r) {
 	Rat ret;
-	ret.denomonator = lcm(r1.denomonator , r2.denomonator);
-	ret.numerator = ( r1.numerator * ( ret.denomonator / r1.denomonator) ) - ( r2.numerator * ( ret.denomonator / r2.denomonator ));
-	return reduce(ret);
+	ret.setDenom(lcm(denomonator , r.getDenom()));
+	ret.setNum(( numerator * ( ret.getDenom() / denomonator) ) - ( r.getNum() * ( ret.getDenom() / r.getDenom() )));
+	ret.reduce();
+	return ret;
 }
-void mult(int ret[], int r1[], int r2[]) {
-	ret[0] = r1[0] * r2[0];
-	ret[1] = r1[1] * r2[1];
-	reduce(ret);
-}
-Rat mult(Rat r1, Rat r2) {
+Rat Rat::mult(Rat r) {
 	Rat ret;
-	ret.numerator = r1.numerator * r2.numerator;
-	ret.denomonator = r1.denomonator * r2.denomonator;
-	return reduce(ret);
+	ret.setNum(numerator * r.getNum());
+	ret.setDenom(denomonator * r.getDenom());
+	ret.reduce();
+	return ret;
 }
-void div(int ret[], int r1[], int r2[]){
-	ret[0] = r1[0] * r2[1];
-	ret[1] = r1[1] * r2[0];
-	reduce(ret);
-}
-Rat div(Rat r1, Rat r2){
+Rat Rat::div(Rat r){
 	Rat ret;
-	ret.numerator = r1.numerator * r2.denomonator;
-	ret.denomonator = r1.denomonator * r2.numerator;
-	return reduce(ret);
-}
-int main(){
-	Rat r1, r2, temp;
-	std::cout << "Enter rational number. \n";
-	input(r1);
-	std::cout << "Enter 2nd rational number. \n";
-	input(r2);
-	output(r1);
-	output(r2);
-	std::cout << "addition is :" << std::endl;
-	temp = add(r1,r2);
-	output(temp);
-	std::cout << "subtraction is :" << std::endl;
-	temp = sub(r1,r2);
-	output(temp);
-	std::cout << "multiplication is :" << std::endl;
-	temp = mult(r1,r2);
-	output(temp);
-	std::cout << "division is :" << std::endl;
-	temp = div(r1,r2);
-	output(temp);
-	std::cout << "\nProgram end.";
-	return 0;
+	ret.numerator = numerator * r.getDenom();
+	ret.denomonator = denomonator * r.getNum();
+	ret.reduce();
+	return ret;
 }
