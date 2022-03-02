@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-bool validatePhone(const string &num);
-bool validateEmail(const string &num);
+string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
+
 
 class Contact {
 	private:
@@ -12,6 +12,7 @@ class Contact {
 		string address;
 		string phone;
 		string email;
+		
 	public:
 		//constructors
 		Contact(string nameLast, string nameFirst, string address, string phone, string email);
@@ -32,6 +33,10 @@ class Contact {
 		void setAddr(const string& set);
 		void setPhone(const string& set);
 		void setEmail(const string& set);
+		
+		//statics
+		static bool validatePhone(const string &num);
+		static bool validateEmail(const string &num);
 };
 
 int main(){
