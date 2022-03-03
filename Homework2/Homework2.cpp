@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
-
+const string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
 
 class Contact {
 	private:
@@ -67,3 +66,72 @@ int main(){
 	} while (loop == "Y" || loop == "y");
 	return 1;
 }
+
+//constructors
+Contact::Contact(string a, string b, string c, string d, string e) : nameLast(a), nameFirst(b), address(c), phone(d), email(e) {
+	//Blank;
+}
+Contact::Contact() : nameLast("N/A"), nameFirst("N/A"), address("N/A"), phone("N/A"), email("N/A") {
+	//blank;
+}
+
+void Contact::Input() { // spits into console and takes input
+	cout << "Input called!" << endl;
+}
+
+void Contact::Output() const { // spits into console
+	cout << "outputing the stuff!!!!OMG" << endl;
+}
+
+const string Contact::getFirst() const {
+	return "first";
+}
+
+const string Contact::getLast() const {
+	return "last";
+}
+
+const string Contact::getAddr() const {
+	return "addr";
+}
+
+const string Contact::getPhone() const {
+	return "phone";
+}
+
+const string Contact::getEmail() const {
+	return "email";
+}
+
+void Contact::setFirst(const string& set) {
+	nameFirst = "setted";
+}
+
+void Contact::setLast(const string& set) {
+	nameLast = "setted";
+
+}
+
+void Contact::setAddr(const string& set) {
+	address = "setted";
+
+}
+
+void Contact::setPhone(const string& set) {
+	phone = "setted";
+
+}
+
+void Contact::setEmail(const string& set) {
+	email = "setted";
+
+}
+
+bool Contact::validatePhone(const string &num){
+	return false;
+}
+
+bool Contact::validateEmail(const string &num){
+	return false;
+}
+
