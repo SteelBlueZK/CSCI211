@@ -9,6 +9,8 @@ using std::endl;
 
 const string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
 
+// class Contact header
+
 class Contact {
 	private:
 		string nameLast;
@@ -46,6 +48,8 @@ class Contact {
 		static bool validateEmail(const string &num);
 };
 
+// Driver
+
 int main(){
 	string loop;
 	Contact 
@@ -72,6 +76,8 @@ int main(){
 	} while (loop == "Y" || loop == "y");
 	return 0;
 }
+
+// class Contact implementation
 
 int Contact::idGenerator = 0;
 
