@@ -53,23 +53,23 @@ class Contact {
 int main(){
 	string loop;
 	Contact 
-		one("Sirname", "Givenname", "123 Wallaby Way Sidney Australia", "1234567890", "givenname.sirname23@self.info"),
-		two,
-		three;
-	two.setLast("Greene");
-	two.setFirst("Matthew");
-	two.setAddr("1 Great Street");
-	two.setPhone("MyPhoneNumberLOL");
-	two.setEmail("What could my email be? I don't remember.");
-	cout << one.getID() << one.getFirst() << one.getLast() 
-		<< one.getAddr() << one.getPhone() 
-		<< one.getEmail() <<endl;
+		zero("Sirname", "Givenname", "123 Wallaby Way Sidney Australia", "1234567890", "givenname.sirname23@self.info"),
+		one,
+		two;
+	one.setLast("Greene");
+	one.setFirst("Matthew");
+	one.setAddr("1 Great Street");
+	one.setPhone("MyPhoneNumberLOL");
+	one.setEmail("What could my email be? I don't remember.");
+	cout << zero.getID() << zero.getFirst() << zero.getLast() 
+		<< zero.getAddr() << zero.getPhone() 
+		<< zero.getEmail() <<endl;
+	one.Output();
 	two.Output();
-	three.Output();
 	do {
-		Contact four;	
-		four.Input();
-		four.Output();
+		Contact free;	
+		free.Input();
+		free.Output();
 		
 		cout << "Continue? Y/N";
 		cin >> loop;
