@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
 #include <ctype.h>
+#include "Contact.h"
+
 using std::cin;
 using std::cerr;
 using std::cout;
@@ -8,76 +10,6 @@ using std::string;
 using std::endl;
 
 const string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
-
-// class Contact header
-
-class Contact {
-	private:
-		string nameLast;
-		string nameFirst;
-		string address;
-		string phone;
-		string email;
-		const int id;
-		static int idGenerator; //should probably be a class with one and only one public function int getNextUniqueID() {} so that I couldn't possibly modify it in my code. but I ain't gonna submit more than this.
-		
-	public:
-		//constructors
-		Contact(string nameLast, string nameFirst, string address, string phone, string email);
-		Contact();
-
-		//general functions
-		void Input(); // spits into console and takes input
-		void Output() const; // spits into console
-
-		//set and get functs
-		const string getFirst() const;
-		const string getLast() const;
-		const string getAddr() const;
-		const string getPhone() const;
-		const string getEmail() const;
-		const int getID() const;
-		void setFirst(const string& set);
-		void setLast(const string& set);
-		void setAddr(const string& set);
-		void setPhone(const string& set);
-		void setEmail(const string& set);
-		
-		//statics
-		static bool validatePhone(const string &num);
-		static bool validateEmail(const string &num);
-};
-
-// Driver
-
-int main(){
-	string loop;
-	Contact 
-		zero("Sirname", "Givenname", "123 Wallaby Way Sidney Australia", "1234567890", "givenname.sirname23@self.info"),
-		one,
-		two;
-	one.setLast("Greene");
-	one.setFirst("Matthew");
-	one.setAddr("1 Great Street");
-	one.setPhone("MyPhoneNumberLOL");
-	one.setEmail("What could my email be? I don't remember.");
-	cout << zero.getID() << zero.getFirst() << zero.getLast() 
-		<< zero.getAddr() << zero.getPhone() 
-		<< zero.getEmail() <<endl;
-	one.Output();
-	two.Output();
-	do {
-		Contact free;	
-		free.Input();
-		free.Output();
-		
-		cout << "Continue? Y/N";
-		cin >> loop;
-	} while (loop == "Y" || loop == "y");
-	return 0;
-}
-
-// class Contact implementation
 
 int Contact::idGenerator = 0;
 
