@@ -1,3 +1,6 @@
+#ifndef RAT_H
+#define RAT_H
+
 class Rat {
 	private:
 		int numerator;
@@ -23,3 +26,5 @@ class Rat {
 		static int gcf(int,int);
 		static const int compare(const Rat&, const Rat&);
 };
+
+#endif
