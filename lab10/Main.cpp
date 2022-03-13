@@ -1,4 +1,4 @@
-#include "Player.cpp"
+#include "Player.h"
 #include <iostream>
 using namespace std;
 
@@ -44,30 +44,73 @@ int main()
         }
         cout << endl;
     } while (option != 'e');
-
-    // Clean up dynamic memory 
-    // << YOUR CODE >>
+    delete [] players;
     return 0;
 }
 
 Player* addPlayer(Player* players, int& numPlayers)
 {
-    // << YOUR CODE >>
+    Player* temp = new Player[numPlayers + 1];
+    int count = 0;
+    while (count < numPlayers) {
+	    temp[count] = players[count];
+	    count++;
+    }
+    string playername;
+    int playerscore;
+    cout << "Enter New Player Name: ";
+    cin >> playername;
+    cout << "Enter New Player Score: ";
+    cin >> playerscore;
+    temp[numPlayers] = Player(playername, playerscore);
+    delete [] players;
+    players = temp;
+    numPlayers++;
     return players;
 }
 
 void printPlayers(Player* players, int numPlayers)
 {
-    // << YOUR CODE >>
+    for (int i = 0; i < numPlayers; i++){
+        cout << players[i].getName() << " has a score of " << players[i].getScore() << endl;
+    }
+    cout << "enter anything to continue: ";
+    string temp;
+    cin >> temp;
 }
 
 void searchPlayers(Player* players, int numPlayers)
 {
+	string name;
+	cout << "Give a player name: ";
+	cin >> name;
+	for (int i = 0; i < numPlayers; i++) {
+		if (players[i].getName() == name) {
+			cout << "Player " << name << " has a score of " << players[i].getScore() << endl;
+			return;
+		}
+	}
+	cout << "Player not found" << endl;
     // << YOUR CODE >>
 }
 
 Player* removePlayer(Player* players, int& numPlayers)
 {
     // << YOUR CODE >>
-    return players;
+	string remove;
+	cout << "Enter player name to remove: ";
+	cin >> remove;
+	int loop = 0;
+	while (loop < numPlayers) {
+		if (players[loop].getName() == remove) {
+			break;
+		}
+		loop++;
+	}
+	if (loop == numPlayers) {
+		cout << "Player not found!";
+		return players;
+	}
+
+	return players;
 }
