@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctype.h>
 #include "Contact.h"
+#include "Address.h"
 
 using std::cin;
 using std::cerr;
@@ -14,26 +15,26 @@ const string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
 int Contact::idGenerator = 0;
 
 //constructors
-Contact::Contact(string a, string b, string c, string d, string e) : id(Contact::idGenerator) {
+Contact::Contact(string a, string b, string d, string e) : id(Contact::idGenerator) {
 	Contact::idGenerator += 1;
 	setLast(a);
 	setFirst(b);
-	setAddr(c);
 	setPhone(d);
-	setEmail(e); 
+	setEmail(e);
+	setAddr(Address());
 	//Blank;
 }
 Contact::Contact() : id(Contact::idGenerator) {
 	Contact::idGenerator += 1;
 	setLast("N/A");
 	setFirst("N/A");
-	setAddr("N/A");
-	setPhone("N/A");
-	setEmail("N/A");
+	setAddr(Address());
+	phone = "N/A";
+	email = "N/A";
 	//blank;
 }
 
-void Contact::Input() { // spits into console and takes input
+void Contact::input() { // spits into console and takes input
 	string input;
 	cout << "Input for contact number " << id << endl
 		<< "Input First Name: ";
@@ -43,10 +44,7 @@ void Contact::Input() { // spits into console and takes input
 	cin >> input;
 	setLast(input);
 	cout << "Input Address: ";
-	//cin >> input;
-	cin.ignore();
-	std::getline(cin, input);
-	setAddr(input);
+	address.input();
 	cout << "Input Phone Number(10 digits): ";
 	cin >> input;
 	setPhone(input);
@@ -55,10 +53,12 @@ void Contact::Input() { // spits into console and takes input
 	setEmail(input);
 }
 
-void Contact::Output() const { // spits into console
+void Contact::output() const { // spits into console
 	cout << "Contact ID: " << id << endl
 		<< "Name: " << nameFirst << " " << nameLast << endl
-		<< "Address: " << address << endl;
+		<< "Address: ";
+	address.output();
+	cout << endl;
 	if (validatePhone(phone))
 		cout << "Phone Contact: " << phone << endl;
 	else
@@ -78,7 +78,7 @@ const string Contact::getLast() const {
 	return nameLast;
 }
 
-const string Contact::getAddr() const {
+const Address Contact::getAddr() const {
 	return address;
 }
 
@@ -102,7 +102,7 @@ void Contact::setLast(const string& set) {
 	nameLast = set;
 }
 
-void Contact::setAddr(const string& set) {
+void Contact::setAddr(const Address& set) {
 	address = set;
 }
 
