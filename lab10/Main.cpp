@@ -111,6 +111,8 @@ Player* removePlayer(Player* players, int& numPlayers)
 		cout << "Player not found!";
 		return players;
 	}
-
+	Players temp[numPlayers-1];
+	for(int i = 0; ;i++){
+	}
 	return players;
 }
