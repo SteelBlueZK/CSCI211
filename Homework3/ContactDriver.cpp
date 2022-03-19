@@ -13,7 +13,7 @@ static const int LIST_SIZE = 10;//POSITIVE NUMBER
 static string command;
 string SolicitInst(const string& text);
 void PrintMenu();
-void Search(const Contact*, const int);
+int Search(const Contact*, const int);
 void DisplayAll(const Contact*, const int);
 void MenuQuit();
 
@@ -63,7 +63,7 @@ int main(){
 
 
 	int numContacts = j;
-	command = SolicitInst("Would you like to enter remaining contacts?");
+	command = SolicitInst("Would you like to enter remaining contacts? y/n");
 	while ((numContacts < LIST_SIZE) && (command == "Y" || command == "y") ) { 
 		cout << "ENTER CONTACTS FOR " << contacts[numContacts].getID() <<"\n";
 		contacts[numContacts].input();
@@ -74,8 +74,13 @@ int main(){
 	do {
 		PrintMenu();
 		command = SolicitInst("enter option character");
-		if (command == "a" || command == "A")
-			Search(contacts, numContacts);
+		if (command == "a" || command == "A"){
+			int index = Search(contacts, numContacts);
+			if (index == -1)
+				cout << "Contact not found!" << endl;
+			if (index >= 0)
+				contacts[index].output();
+		}
 		if (command == "b" || command == "B")
 			DisplayAll(contacts, numContacts);
 		if (command == "e" || command == "E")
@@ -103,7 +108,7 @@ void PrintMenu() {
 		<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
-void Search(const Contact* list, const int size){
+int Search(const Contact* list, const int size){
 	string a, search;
 	int signal; // 1 first, 2 l, both is 3
 	do {
@@ -133,11 +138,10 @@ void Search(const Contact* list, const int size){
 		if (signal > 1)
 			s += list[i].getLast();
 		if (search == s) {
-			list[i].output();
-			return;
+			return i;
 		}
 	}
-	cout << search << " not found" << endl;
+	return -1;
 }
 
 void DisplayAll(const Contact* list, const int size){
