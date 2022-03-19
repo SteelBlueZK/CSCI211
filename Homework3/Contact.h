@@ -23,6 +23,7 @@ class Contact {
 		//general functions
 		void input(); // spits into console and takes input
 		void output() const; // spits into console
+		void input(string nameLast, string nameFirst, string phone, string email);
 
 		//set and get functs
 		const string getFirst() const;

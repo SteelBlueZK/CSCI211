@@ -12,7 +12,7 @@ using std::endl;
 
 const string topLevelDomain[5] = {".gov", ".edu", ".org", ".com", ".net" };
 
-int Contact::idGenerator = 0;
+int Contact::idGenerator = 1;
 
 //constructors
 Contact::Contact(string a, string b, string d, string e) : id(Contact::idGenerator) {
@@ -24,6 +24,7 @@ Contact::Contact(string a, string b, string d, string e) : id(Contact::idGenerat
 	setAddr(Address());
 	//Blank;
 }
+
 Contact::Contact() : id(Contact::idGenerator) {
 	Contact::idGenerator += 1;
 	setLast("N/A");
@@ -58,7 +59,6 @@ void Contact::output() const { // spits into console
 		<< "Name: " << nameFirst << " " << nameLast << endl
 		<< "Address: ";
 	address.output();
-	cout << endl;
 	if (validatePhone(phone))
 		cout << "Phone Contact: " << phone << endl;
 	else
@@ -68,6 +68,14 @@ void Contact::output() const { // spits into console
 	else
 		cout << "Email invalid!" << endl;
 	cout << endl;
+}
+
+void Contact::input(string a, string b, string d, string e) {
+	setLast(a);
+	setFirst(b);
+	setPhone(d);
+	setEmail(e);
+	setAddr(Address());
 }
 
 const string Contact::getFirst() const {
