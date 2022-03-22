@@ -109,34 +109,16 @@ void PrintMenu() {
 }
 
 int Search(const Contact* list, const int size){
-	string a, search;
-	int signal; // 1 first, 2 l, both is 3
-	do {
-		a = SolicitInst("Search by first, last, or both names f/l/b");
-	} while ( !(a == "f" || a == "l" || a == "b"));
-	
-	if (a == "f"){
-		signal = 1;
-		search = SolicitInst("enter first name");
-	}
-	if (a == "l"){
-		signal = 2;
-		search = SolicitInst("enter last name");
-	}
-	if (a == "b"){
-		signal = 3;
-		search = SolicitInst("enter first name then last name");
-		string temp;
-		cin >> temp;
-		search += temp;
-	}
+	string search;
+	search = SolicitInst("enter first name then last name");
+	string temp;
+	cin >> temp;
+	search += temp;
 	
 	for (int i = 0; i < size; i++) {
 		string s = "";
-		if (signal % 2 == 1)
-			s = list[i].getFirst();
-		if (signal > 1)
-			s += list[i].getLast();
+		s = list[i].getFirst();
+		s += list[i].getLast();
 		if (search == s) {
 			return i;
 		}
