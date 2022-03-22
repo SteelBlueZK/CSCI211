@@ -110,14 +110,13 @@ void PrintMenu() {
 
 int Search(const Contact* list, const int size){
 	string search;
-	search = SolicitInst("enter first name then last name");
-	string temp;
-	cin >> temp;
-	search += temp;
+	cout << "Enter (firstname lastname): ";
+	std::getline(cin, search);
+	std::getline(cin, search);
 	
 	for (int i = 0; i < size; i++) {
 		string s = "";
-		s = list[i].getFirst();
+		s = list[i].getFirst() + " ";
 		s += list[i].getLast();
 		if (search == s) {
 			return i;
