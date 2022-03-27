@@ -22,7 +22,7 @@ class ContactBook {
 		int find(std::string first, std::string last) const;
 		bool display(int v);
 		bool deleteContact(int v);
-		Contact* operator [](int v);
+		bool wizard(int v);
 		//void Functions
 };
 

@@ -112,12 +112,7 @@ void DisplayContact(ContactBook& b){
 
 void UpdateContactInfo(ContactBook& b){
 	int v = SolicitName(b);
-	if (v == -1) {
-		std::cout << "Contact not found in book!" << std::endl;
-		return;
-	}
-	Contact& l = *b[v];
-	l.wizard();
+	b.wizard(v);
 }
 
 void DisplayAll(ContactBook& b) {

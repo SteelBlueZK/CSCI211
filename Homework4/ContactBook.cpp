@@ -65,12 +65,11 @@ bool ContactBook::deleteContact(int v){
 	return true;
 }
 
-Contact* ContactBook::operator [](int v){
-	if (v >= size || v < 0) {
-		std::cerr << "You fucked something up, attempted to retrieve contact not in list\n";
-		exit(1);
+bool ContactBook::wizard(int v) {
+	if (v < 0 || v >= size) {
+		std::cout << "Contact not found in book!" << v << std::endl;
+		return false;
 	}
-	Contact& p = contacts[v];
-	return &p;
+	contacts[v].wizard();
+	return true;
 }
-
