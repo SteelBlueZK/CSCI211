@@ -60,6 +60,10 @@ bool ContactBook::display(int v){
 }
 
 bool ContactBook::deleteContact(int v){
+	if (v < 0 || v >= size) {
+		std::cout << "Contact not found in book!" << v << std::endl;
+		return false;
+	}
 	contacts[v] = contacts[size-1];
 	size--;
 	return true;

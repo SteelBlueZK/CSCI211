@@ -182,22 +182,21 @@ Contact& Contact::operator =(const Contact& c) {
 void Contact::wizard(){
 	output();
 	string i;
-	std::getline(cin,i);
-	cout << "Would you like to update first name? y/n";
+	cout << "Would you like to update first name? y/n: ";
 	std::getline(cin,i);
 	if (i == "y" || i == "Y") {
 		cout << "enter first: ";
 		std::getline(cin,i);
 		setFirst(i);
 	}
-	cout << "Would you like to update last name? y/n";
+	cout << "Would you like to update last name? y/n: ";
 	std::getline(cin,i);
 	if (i == "y" || i == "Y") {
 		cout << "enter last: ";
 		std::getline(cin,i);
 		setLast(i);
 	}
-	cout << "Would you like to update Address? y/n";
+	cout << "Would you like to update Address? y/n: ";
 	std::getline(cin,i);
 	if (i == "y" || i == "Y") {
 		cout << "enter address \n";
@@ -205,14 +204,14 @@ void Contact::wizard(){
 		a.input();
 		setAddr(a);
 	}
-	cout << "Would you like to update phone? y/n";
+	cout << "Would you like to update phone? y/n: ";
 	std::getline(cin,i);
 	if (i == "y" || i == "Y") {
 		cout << "enter phone: ";
 		std::getline(cin,i);
 		setPhone(i);
 	}
-	cout << "Would you like to update email address? y/n";
+	cout << "Would you like to update email address? y/n: ";
 	std::getline(cin,i);
 	if (i == "y" || i == "Y") {
 		cout << "enter email: ";
