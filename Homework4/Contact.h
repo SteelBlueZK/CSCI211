@@ -3,44 +3,47 @@
 
 #include <string>
 #include "Address.h"
-using std::string;
 
 class Contact {
 	private:
-		string nameLast;
-		string nameFirst;
+		std::string nameLast;
+		std::string nameFirst;
 		Address address;
-		string phone;
-		string email;
+		std::string phone;
+		std::string email;
 		const int id;
 		static int idGenerator; //should probably be a class with one and only one public function int getNextUniqueID() {} so that I couldn't possibly modify it in my code. but I ain't gonna submit more than this.
 		
 	public:
 		//constructors
-		Contact(string nameLast, string nameFirst, string phone, string email);
+		Contact(std::string nameLast, std::string nameFirst, std::string phone, std::string email);
 		Contact();
 
 		//general functions
 		void input(); // spits into console and takes input
+		void wizard();
 		void output() const; // spits into console
-		void input(string nameLast, string nameFirst, string phone, string email);
+		void input(std::string nameLast, std::string nameFirst, std::string phone, std::string email);
 
 		//set and get functs
-		const string getFirst() const;
-		const string getLast() const;
+		const std::string getFirst() const;
+		const std::string getLast() const;
 		const Address getAddr() const;
-		const string getPhone() const;
-		const string getEmail() const;
+		const std::string getPhone() const;
+		const std::string getEmail() const;
 		const int getID() const;
-		void setFirst(const string& set);
-		void setLast(const string& set);
+		void setFirst(const std::string& set);
+		void setLast(const std::string& set);
 		void setAddr(const Address& set);
-		void setPhone(const string& set);
-		void setEmail(const string& set);
+		void setPhone(const std::string& set);
+		void setEmail(const std::string& set);
 		
 		//statics
-		static bool validatePhone(const string &num);
-		static bool validateEmail(const string &num);
+		static bool validatePhone(const std::string &num);
+		static bool validateEmail(const std::string &num);
+
+		//operators
+		Contact& operator =(const Contact&);
 };
 #endif
 

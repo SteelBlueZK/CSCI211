@@ -39,18 +39,18 @@ void Contact::input() { // spits into console and takes input
 	string input;
 	cout << "Input for contact number " << id << endl
 		<< "Input First Name: ";
-	cin >> input;
+	std::getline(cin, input);
 	setFirst(input);
 	cout << "Input Last Name: ";
-	cin >> input;
+	std::getline(cin, input);
 	setLast(input);
 	cout << "Input Address: ";
 	address.input();
 	cout << "Input Phone Number(10 digits): ";
-	cin >> input;
+	std::getline(cin, input);
 	setPhone(input);
 	cout << "Input email(example@website.com): ";
-	cin >> input;
+	std::getline(cin, input);
 	setEmail(input);
 }
 
@@ -168,5 +168,56 @@ bool Contact::validateEmail(const string &num){
 		}
 	}
 	return false;
+}
+
+Contact& Contact::operator =(const Contact& c) {
+	nameLast = c.nameLast;
+	nameFirst = c.nameFirst;
+	address = c.address;
+	phone = c.phone;
+	email = c.email;
+	return *this;
+}
+
+void Contact::wizard(){
+	output();
+	string i;
+	std::getline(cin,i);
+	cout << "Would you like to update first name? y/n";
+	std::getline(cin,i);
+	if (i == "y" || i == "Y") {
+		cout << "enter first: ";
+		std::getline(cin,i);
+		setFirst(i);
+	}
+	cout << "Would you like to update last name? y/n";
+	std::getline(cin,i);
+	if (i == "y" || i == "Y") {
+		cout << "enter last: ";
+		std::getline(cin,i);
+		setLast(i);
+	}
+	cout << "Would you like to update Address? y/n";
+	std::getline(cin,i);
+	if (i == "y" || i == "Y") {
+		cout << "enter address \n";
+		Address a;
+		a.input();
+		setAddr(a);
+	}
+	cout << "Would you like to update phone? y/n";
+	std::getline(cin,i);
+	if (i == "y" || i == "Y") {
+		cout << "enter phone: ";
+		std::getline(cin,i);
+		setPhone(i);
+	}
+	cout << "Would you like to update email address? y/n";
+	std::getline(cin,i);
+	if (i == "y" || i == "Y") {
+		cout << "enter email: ";
+		std::getline(cin,i);
+		setEmail(i);
+	}
 }
 

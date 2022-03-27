@@ -13,17 +13,16 @@
 #define ADDRESS_H
 
 #include <string>
-using namespace std;
 
 class Address
 {
    private:
-      string home;
-      string street;
-      string apt;
-      string city;
-      string state;
-      string zip;
+	   std::string home;
+	   std::string street;
+	   std::string apt;
+	   std::string city;
+	   std::string state;
+	   std::string zip;
 
    public:
 
@@ -32,24 +31,24 @@ class Address
       Address();
 
       // Accessor method for the home instance variable
-      string getHome() const;
+      std::string getHome() const;
 
       // Accessor method for the street instance variable
-      string getStreet() const;
+      std::string getStreet() const;
 
       // Accessor method that returns apartment number
       // if it is an apartment building, or "none" if
       // it is a private house.
-      string getApt() const;
+      std::string getApt() const;
 
       // Accessor method for the city instance variable
-      string getCity() const;
+      std::string getCity() const;
 
       // Accessor method for the state instance variable
-      string getState() const;
+      std::string getState() const;
 
       // Accessor method for the zip instance variable
-      string getZip() const;
+      std::string getZip() const;
 
       // Method that prints Address to console
       void output() const;

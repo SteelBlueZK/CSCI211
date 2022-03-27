@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cctype>
 #include "Contact.h"
-//remove this contact when you implement Contactbook
 #include "ContactBook.h"
 
 using std::cout;
@@ -10,39 +9,44 @@ using std::cin;
 using std::string;
 using std::endl;
 
-static const char COMMAND_ARRAY[] = {'a','b','c','d','e'};
-
-static string command;
 static bool CharCompare(const string&, char);
+
 string SolicitInst(const string& text);
+int SolicitName(ContactBook&);
 void PrintMenu();
-int Search(const Contact*, const int);
-void DisplayAll(const Contact*, const int);
+int Search();
+
+void AddContact(ContactBook&);
+void DeleteContact(ContactBook&);
+void DisplayContact(ContactBook&);
+void UpdateContactInfo(ContactBook&);
+void DisplayAll(ContactBook&);
 void MenuQuit();
 
 int main(){
-
+	string command;
+	ContactBook book("Joe", "Dirt");
 	//menu
 	do {
 		PrintMenu();
 		command = SolicitInst("enter option character");
 		if (CharCompare(command,'q')){
-			//option1
+			AddContact(book);
 		}
 		if (CharCompare(command,'w')){
-			//option1
+			DeleteContact(book);
 		}
 		if (CharCompare(command,'e')){
-			//option1
+			DisplayContact(book);
 		}
 		if (CharCompare(command,'r')){
-			//option1
+			UpdateContactInfo(book);
 		}
 		if (CharCompare(command,'t')){
-			//option1
+			DisplayAll(book);
 		}
 		if (CharCompare(command,'z')){
-			//option1
+			MenuQuit();
 		}
 
 	} while(true);
@@ -66,56 +70,61 @@ void PrintMenu() {
 string SolicitInst(const string& text) {
 	string result;
 	cout << text << ": ";
-	cin >> result;
+	std::getline(cin,result);
 	return result;
 }
 
-int Search(const Contact* list, const int size){
-	string a, search;
-	int signal; // 1 first, 2 l, both is 3
-	do {
-		a = SolicitInst("Search by first, last, or both names f/l/b");
-	} while ( !(a == "f" || a == "l" || a == "b"));
-	
-	if (a == "f"){
-		signal = 1;
-		search = SolicitInst("enter first name");
-	}
-	if (a == "l"){
-		signal = 2;
-		search = SolicitInst("enter last name");
-	}
-	if (a == "b"){
-		signal = 3;
-		search = SolicitInst("enter first name then last name");
-		string temp;
-		cin >> temp;
-		search += temp;
-	}
-	
-	for (int i = 0; i < size; i++) {
-		string s = "";
-		if (signal % 2 == 1)
-			s = list[i].getFirst();
-		if (signal > 1)
-			s += list[i].getLast();
-		if (search == s) {
-			return i;
-		}
-	}
-	return -1;
+bool CharCompare(const string& s, char a) {
+	return (s[0] == a) || (s[0] == toupper(a) );
 }
 
-void DisplayAll(const Contact* list, const int size){
-	for (int i = 0; i < size; i++) {
-		list[i].output();
+//menu options
+
+void AddContact(ContactBook& b){
+	Contact a;
+	a.input();
+	b.addContact(a);
+}
+
+void DeleteContact(ContactBook& b){
+	int v = SolicitName(b);
+	b.deleteContact(v);
+}
+
+int SolicitName(ContactBook& b){
+	string input, first, last;
+	cout << "Enter last name: ";
+	cin >> last;
+	std::getline(cin,input);
+	cout << "Enter first name: ";
+	cin >> first;
+	std::getline(cin,input);
+	int j = b.find(first, last);
+	return j;
+}
+
+void DisplayContact(ContactBook& b){
+	int v = SolicitName(b);
+	if (!b.display(v)){
+		std::cout << "Contact not found in book!" << std::endl;
+	}	
+}
+
+void UpdateContactInfo(ContactBook& b){
+	int v = SolicitName(b);
+	if (v == -1) {
+		std::cout << "Contact not found in book!" << std::endl;
+		return;
 	}
+	Contact& l = *b[v];
+	l.wizard();
+}
+
+void DisplayAll(ContactBook& b) {
+	b.display();
 }
 
 void MenuQuit(){
 	exit(0);
 }
 
-bool CharCompare(const string& s, char a) {
-	return (s[0] == a) || (s[0] == toupper(a) );
-}
