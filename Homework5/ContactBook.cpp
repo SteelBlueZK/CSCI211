@@ -39,7 +39,7 @@ bool ContactBook::addContact(Contact c){
 
 void ContactBook::display() const{
 	for (int i = 0; i < size; i++) {
-		cout << contacts[i];
+		std::cout << contacts[i];
 	}
 }
 
@@ -55,7 +55,7 @@ bool ContactBook::display(int v){
 	if (v > size - 1 || v < 0){
 		return false;
 	}
-	cout << contacts[v];
+	std::cout << contacts[v];
 	return true;
 }
 

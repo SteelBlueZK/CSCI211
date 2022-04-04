@@ -35,39 +35,41 @@ Contact::Contact() : id(Contact::idGenerator) {
 	//blank;
 }
 
-friend std::istream& operator >>(std::istream& in, Contact& c) { // spits into console and takes input
+std::istream& operator >>(std::istream& in, Contact& c) { // spits into console and takes input
 	string input;
 	cout << "Input for contact number " << c.id << endl
 		<< "Input First Name: ";
 	std::getline(cin, input);
-	setFirst(input);
+	c.setFirst(input);
 	cout << "Input Last Name: ";
 	std::getline(cin, input);
-	setLast(input);
+	c.setLast(input);
 	cout << "Input Address: ";
-	cin >> address;
+	cin >> c.address;
 	cout << "Input Phone Number(10 digits): ";
 	std::getline(cin, input);
-	setPhone(input);
+	c.setPhone(input);
 	cout << "Input email(example@website.com): ";
 	std::getline(cin, input);
-	setEmail(input);
+	c.setEmail(input);
+	return in;
 }
 
-friend std::ostream& operator <<(std::ostream& out, const Contact& c) { // spits into console
+std::ostream& operator <<(std::ostream& out, const Contact& c) { // spits into console
 	cout << "Contact ID: " << c.id << endl
 		<< "Name: " << c.nameFirst << " " << c.nameLast << endl
 		<< "Address: ";
 	cout << c.address;
-	if (validatePhone(phone))
+	if (c.validatePhone(c.phone))
 		cout << "Phone Contact: " << c.phone << endl;
 	else
 		cout << "Phone number invalid!" << endl;
-	if (validateEmail(email))
+	if (c.validateEmail(c.email))
 		cout << "Email Contact: " << c.email << endl;
 	else
 		cout << "Email invalid!" << endl;
 	cout << endl;
+	return out;
 }
 
 void Contact::input(string a, string b, string d, string e) {

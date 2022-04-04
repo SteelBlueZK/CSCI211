@@ -20,7 +20,6 @@ class Contact {
 		Contact();
 
 		//general functions
-		void input();
 		friend std::istream& operator >>(std::istream& in, Contact& c); // spits into console and takes input
 		void wizard();
 		friend std::ostream& operator <<(std::ostream& out, const Contact& c); // spits into console

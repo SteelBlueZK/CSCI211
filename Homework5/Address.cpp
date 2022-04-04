@@ -55,15 +55,16 @@ string Address::getZip() const
    return zip;
 }
 
-friend std::ostream& operator <<(std::ostream& out, const Address& a){
+std::ostream& operator <<(std::ostream& out, const Address& a){
    out << a.home << " " << a.street;
    if (a.apt != "none")
       out << ", Apt# " << a.apt;
    out << endl;
    out << a.city << ", " << a.state << " " << a.zip << endl;
+   return out;
 }
 
-friend std::istream& operator >>(std::istream& in, Address& a){
+std::istream& operator >>(std::istream& in, Address& a){
    char choice;
    cout << "Apartment or House (a/h):> ";
    in >> choice;
@@ -91,4 +92,5 @@ friend std::istream& operator >>(std::istream& in, Address& a){
 
    cout << "Enter zip code (EX: 11367)_______: ";
    getline(in, a.zip);
+   return in;
 }
