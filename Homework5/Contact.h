@@ -14,6 +14,8 @@ class Contact {
 		const int id;
 		static int idGenerator; //should probably be a class with one and only one public function int getNextUniqueID() {} so that I couldn't possibly modify it in my code. but I ain't gonna submit more than this.
 		
+		static int GeneralComparison(const Contact& l, const Contact& r);
+		
 	public:
 		//constructors
 		Contact(std::string nameLast, std::string nameFirst, std::string phone, std::string email);
@@ -44,6 +46,12 @@ class Contact {
 
 		//operators
 		Contact& operator =(const Contact&);
+		bool operator <(const Contact&);
+		bool operator >(const Contact&);
+		bool operator ==(const Contact&);
+		bool operator !=(const Contact&);
+		bool operator <=(const Contact&);
+		bool operator >=(const Contact&);
 };
 #endif
 

@@ -222,3 +222,35 @@ void Contact::wizard(){
 	}
 }
 
+int Contact::GeneralComparison(const Contact& l, const Contact& r) {
+	int value;
+	value = l.nameLast.compare(r.nameLast);
+	if (value == 0)
+		value = l.nameFirst.compare(r.nameFirst);
+	return value;
+}
+
+bool Contact::operator <(const Contact& c){
+	return GeneralComparison(*this,c) < 0;
+}
+
+bool Contact::operator >(const Contact& c){
+	return GeneralComparison(*this,c) > 0;
+}
+
+bool Contact::operator ==(const Contact& c){
+	return GeneralComparison(*this,c) == 0;
+}
+
+bool Contact::operator !=(const Contact& c){
+	return GeneralComparison(*this,c) != 0;
+}
+
+bool Contact::operator <=(const Contact& c){
+	return GeneralComparison(*this,c) <= 0;
+}
+
+bool Contact::operator >=(const Contact& c){
+	return GeneralComparison(*this,c) >= 0;
+}
+
