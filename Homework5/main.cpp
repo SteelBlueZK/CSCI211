@@ -1,7 +1,6 @@
 #include <string>
 #include <iostream>
 #include <cctype>
-#include "Contact.h"
 #include "ContactBook.h"
 
 using std::cout;
@@ -81,9 +80,7 @@ bool CharCompare(const string& s, char a) {
 //menu options
 
 void AddContact(ContactBook& b){
-	Contact a;
-	cin >> a;
-	b.addContact(a);
+	b.addContact();
 }
 
 void DeleteContact(ContactBook& b){

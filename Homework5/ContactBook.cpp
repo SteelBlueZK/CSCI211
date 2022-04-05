@@ -24,7 +24,15 @@ ContactBook::ContactBook(string first, string last){
 
 //interations
 bool  ContactBook::addContact(){
-	return false;
+	if(size >= MAX_SIZE){
+		std::cerr << "you added a contact to a full contactbook, idiot";
+		exit(1);// could return false....
+	}
+	Contact a;
+	std::cin >> a;
+	contacts[size] = a;
+	size++;
+	return true;
 }
 
 bool ContactBook::addContact(Contact c){
