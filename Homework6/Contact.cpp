@@ -56,10 +56,8 @@ std::istream& operator >>(std::istream& in, Contact& c) { // spits into console 
 }
 
 std::ostream& operator <<(std::ostream& out, const Contact& c) { // spits into console
-	cout << "Contact ID: " << c.id << endl
-		<< "Name: " << c.nameFirst << " " << c.nameLast << endl
-		<< "Address: ";
-	cout << c.address;
+	cout 	<< "Name: " << c.nameLast << ", " << c.nameFirst << endl
+		<< "Address: " << c.address;
 	if (c.validatePhone(c.phone))
 		cout << "Phone Contact: " << c.phone << endl;
 	else

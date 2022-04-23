@@ -113,7 +113,7 @@ void UpdateContactInfo(ContactBook& b){
 }
 
 void DisplayAll(ContactBook& b) {
-	b.display();
+	std::cout << b;
 }
 
 void MenuQuit(){

@@ -5,50 +5,40 @@
 
 using std::string;
 
-const int ContactBook::MAX_SIZE = 10;
-
-
 //constructors
 
 ContactBook::ContactBook(){
+	contacts = NULL;
 	fName = "";
 	lName = "";
 	size = 0;
+	MaxSize = 0;
 }
 
-ContactBook::ContactBook(string first, string last){
-	fName = first;
-	lName = last;
+ContactBook::ContactBook(string first, string last):
+		fName(first), lName(last) {
+	contacts = NULL;
 	size = 0;
+	MaxSize = 0;
 }
 
 //interations
-bool  ContactBook::addContact(){
-	if(size >= MAX_SIZE){
-		std::cerr << "you added a contact to a full contactbook, idiot";
-		exit(1);// could return false....
+bool ContactBook::addContact(){
+	if(size >= MaxSize){
+		Grow();
 	}
-	Contact a;
-	std::cin >> a;
-	contacts[size] = a;
+	std::cin >> contacts[size];
 	size++;
 	return true;
 }
 
 bool ContactBook::addContact(Contact c){
-	if(size >= MAX_SIZE){
-		std::cerr << "you added a contact to a full contactbook, idiot";
-		exit(1);// could return false....
+	if(size >= MaxSize){
+		Grow();
 	}
 	contacts[size] = c;
 	size++;
 	return true;
-}
-
-void ContactBook::display() const{
-	for (int i = 0; i < size; i++) {
-		std::cout << contacts[i];
-	}
 }
 
 int ContactBook::find(string first, string last) const {
@@ -59,7 +49,7 @@ int ContactBook::find(string first, string last) const {
 	return -1;
 }
 
-bool ContactBook::display(int v){
+bool ContactBook::display(int v) const {
 	if (v > size - 1 || v < 0){
 		return false;
 	}
@@ -85,3 +75,92 @@ bool ContactBook::wizard(int v) {
 	contacts[v].wizard();
 	return true;
 }
+
+ContactBook::ContactBook(const ContactBook& a) {
+	size = a.size;
+	MaxSize = a.MaxSize;
+	fName = a.fName;
+	lName = a.lName;
+	if (a.contacts != NULL) {
+		contacts = new Contact[MaxSize];
+		for (int i = 0; i < size; i++) {
+			contacts[i] = a.contacts[i];
+		}
+	} else {
+		contacts = NULL;
+	}
+}
+
+ContactBook::~ContactBook() {
+	if (contacts != NULL) {
+		delete [] contacts;
+	}
+}
+
+const Contact& ContactBook::operator [](int v) const{
+	if (v < 0 || v >= size) {
+		std::cerr << "indexing contact that does not exist";
+		exit(1);
+	}
+	return contacts[v];
+}
+
+ContactBook& ContactBook::operator =(const ContactBook& a) {
+	if (this != &a) {
+		if (contacts != NULL) {
+			delete [] contacts;
+			contacts = NULL;
+		}
+		size = a.size;
+		MaxSize = a.MaxSize;
+		if (MaxSize > 0)
+			contacts = new Contact[MaxSize];
+		if (a.contacts != NULL) {
+			for (int i = 0; i < a.size; i++) {
+				contacts[i] = a.contacts[i];
+			}
+		}
+	}
+	return *this;
+}
+
+void ContactBook::Grow(){
+	MaxSize += 10;
+	Contact* temp = new Contact[MaxSize];
+	for (int i = 0; i < size; i++){
+		temp[i] = contacts[i];
+	}
+	delete [] contacts;
+	contacts = temp;
+}
+
+int ContactBook::getMaxSize() const {
+	return MaxSize;
+}
+
+int ContactBook::getSize() const{
+	return size;
+}
+
+std::string ContactBook::getFisrtName() const{
+	return fName;
+}
+
+std::string ContactBook::getLastName() const{
+	return lName;
+}
+
+std::ostream& operator <<(std::ostream& out, const ContactBook& a){
+	out << "Contact Book of " << a.lName << ", " << a.fName << std::endl; 
+	for (int i = 0; i < a.size; i++) {
+		out 	<< "Contact " << i+1 << ":" << std::endl
+			<< a[i];
+	}
+	return out;
+}
+
+std::istream& operator >>(std::istream& in, ContactBook& a){
+	std::cerr << "TODO: make >> operator for ContactBook sensible";
+	exit(1);
+}
+
