@@ -9,7 +9,7 @@ using std::cin;
 using std::string;
 using std::endl;
 
-int OpenMenu(ContactBook& book){
+int BookMenu::OpenMenu(ContactBook& book){
 	string command;
 	//menu
 	bool menu = true;
@@ -39,7 +39,7 @@ int OpenMenu(ContactBook& book){
 	return 0;
 }
 
-void PrintMenu(const ContactBook& book) {
+void BookMenu::PrintMenu(const ContactBook& book) {
 	cout << endl
 		<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n"
 		<< "         Contact Book menu" << "\n"
@@ -55,29 +55,29 @@ void PrintMenu(const ContactBook& book) {
 		<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
-string SolicitInst(const string& text) {
+string BookMenu::SolicitInst(const string& text) {
 	string result;
 	cout << text << ": ";
 	std::getline(cin,result);
 	return result;
 }
 
-bool CharCompare(const string& s, char a) {
+bool BookMenu::CharCompare(const string& s, char a) {
 	return (s[0] == a) || (s[0] == toupper(a) );
 }
 
 //menu options
 
-void AddContact(ContactBook& b){
+void BookMenu::AddContact(ContactBook& b){
 	b.addContact();
 }
 
-void DeleteContact(ContactBook& b){
+void BookMenu::DeleteContact(ContactBook& b){
 	int v = SolicitName(b);
 	b.deleteContact(v);
 }
 
-int SolicitName(ContactBook& b){
+int BookMenu::SolicitName(ContactBook& b){
 	string input, first, last;
 	cout << "Enter last name: ";
 	cin >> last;
@@ -89,23 +89,23 @@ int SolicitName(ContactBook& b){
 	return j;
 }
 
-void DisplayContact(ContactBook& b){
+void BookMenu::DisplayContact(ContactBook& b){
 	int v = SolicitName(b);
 	if (!b.display(v)){
 		std::cout << "Contact not found in book!" << std::endl;
 	}	
 }
 
-void UpdateContactInfo(ContactBook& b){
+void BookMenu::UpdateContactInfo(ContactBook& b){
 	int v = SolicitName(b);
 	b.wizard(v);
 }
 
-void DisplayAll(ContactBook& b) {
+void BookMenu::DisplayAll(ContactBook& b) {
 	std::cout << b;
 }
 
-void MenuQuit(){
+void BookMenu::MenuQuit(){
 	exit(0);
 }
 
