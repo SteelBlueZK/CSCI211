@@ -94,3 +94,24 @@ std::istream& operator >>(std::istream& in, Address& a){
    getline(in, a.zip);
    return in;
 }
+
+std::string Address::stringify() const {
+	return home + "|" + street + "|" + apt + "|" + city + "|" + state + "|" + zip;
+}
+
+void Address::setAll(const std::string loadData) {
+	using std::size_t;
+	size_t location = loadData.find('|');
+	home = loadData.substr(0, location);
+	size_t location2 = loadData.find('|', location + 1);
+	street = loadData.substr(location + 1, location2 - location - 1);
+	size_t location3 = loadData.find('|', location2 + 1);
+	apt = loadData.substr(location2 + 1, location3 - location2 - 1);
+	size_t location4 = loadData.find('|', location3 + 1);
+	city = loadData.substr(location3 + 1, location4 - location3 - 1);
+	size_t location5 = loadData.find('|', location4 + 1);
+	state = loadData.substr(location4 + 1, location5 - location4 - 1);
+	size_t location6 = loadData.find('|', location5 + 1);
+	zip = loadData.substr(location5 + 1, location6 - location5 - 1);
+}
+

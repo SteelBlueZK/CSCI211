@@ -30,6 +30,9 @@ class Address
       // Initializes all variable to empty string
       Address();
 
+      // sets all stuff in Address to a Stringified address.
+      void setAll(const std::string loadData);
+
       // Accessor method for the home instance variable
       std::string getHome() const;
 
@@ -49,9 +52,12 @@ class Address
 
       // Accessor method for the zip instance variable
       std::string getZip() const;
-
+      
+      // Returns the data in Address as a formated string for saving
+      std::string stringify() const;
+      
       // Method that prints Address to console
-	  friend std::ostream& operator <<(std::ostream& out, const Address& a);
+      friend std::ostream& operator <<(std::ostream& out, const Address& a);
 
       // Method that solicits the information 
       // Apartment will be set to "none" if it is a private house
