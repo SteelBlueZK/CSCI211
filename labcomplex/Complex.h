@@ -1,6 +1,9 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
+#include <iostream>
+
+
 class Complex {
 	private:
 		double real, imag;
@@ -19,6 +22,13 @@ class Complex {
 		const Complex operator -(const Complex& a) const;
 		const Complex operator *(const Complex& a) const;
 		const Complex operator /(const Complex& a) const;
+		bool operator ==(const Complex& a) const;
+		bool operator !=(const Complex& a) const;
+		double operator [](const Complex& a) const;
+		void operator =(const Complex& a) const;
+		friend std::ostream& operator <<(std::ostream& out, const Complex& a);
+		friend std::istream& operator >>(std::istream& in, const Complex& a);
+		
 };
 
 #endif
