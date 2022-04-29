@@ -8,11 +8,15 @@ class ContactBook {
 	private:
 		std::string fName;
 		std::string lName;
-		Contact* contacts;
+		Contact** contacts;
 		int MaxSize;
 		int size;
 
-		void Grow();
+		//precondition, none. post condition, all pointers in contacts deleted, contacts deleted, contacts null 
+		void NullContacts();
+		//precondition, this->contacts is null.
+		void CopyContacts(const ContactBook& a);
+		void Grow(int x = 10);
 	public:
 		//constructors
 		ContactBook();
@@ -45,6 +49,16 @@ class ContactBook {
 		
 		//Mutates identified contact by user cin input.
 		bool wizard(int v);
+
+		// Appends ContactBook to saved file
+		//void AppendSave(std::ofstream file);
+		
+		// returns string that is the saved data of a file.
+		std::string stringify() const;
+		
+		// sorts array lexographically
+		void SelectionSort();
+
 		//overload operators
 		ContactBook& operator =(const ContactBook&);
 		const Contact& operator [](int v) const;
