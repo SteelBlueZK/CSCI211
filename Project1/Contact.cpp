@@ -252,3 +252,8 @@ bool Contact::operator >=(const Contact& c){
 	return GeneralComparison(*this,c) >= 0;
 }
 
+std::string Contact::stringify(){
+	std::string result = nameFirst + "|" + nameLast + "|" + phone + "|" + email + "|" + address.stringify();
+	return result;
+}
+

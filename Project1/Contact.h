@@ -19,12 +19,12 @@ class Contact {
 	public:
 		//constructors
 		Contact(std::string nameLast, std::string nameFirst, std::string phone, std::string email);
+		// creates a contact with default initialization.
 		Contact();
 
 		//general functions
-		friend std::istream& operator >>(std::istream& in, Contact& c); // spits into console and takes input
+		//solicits user input to change data of contact.
 		void wizard();
-		friend std::ostream& operator <<(std::ostream& out, const Contact& c); // spits into console
 		void input(std::string nameLast, std::string nameFirst, std::string phone, std::string email);
 
 		//set and get functs
@@ -39,6 +39,7 @@ class Contact {
 		void setAddr(const Address& set);
 		void setPhone(const std::string& set);
 		void setEmail(const std::string& set);
+		std::string stringify();
 		
 		//statics
 		static bool validatePhone(const std::string &num);
@@ -52,6 +53,8 @@ class Contact {
 		bool operator !=(const Contact&);
 		bool operator <=(const Contact&);
 		bool operator >=(const Contact&);
+		friend std::istream& operator >>(std::istream& in, Contact& c); // spits into console and takes input
+		friend std::ostream& operator <<(std::ostream& out, const Contact& c); // spits into console
 };
 #endif
 
