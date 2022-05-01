@@ -40,6 +40,7 @@ class Contact {
 		void setPhone(const std::string& set);
 		void setEmail(const std::string& set);
 		std::string stringify();
+		void setAll(const std::string loadData);
 		
 		//statics
 		static bool validatePhone(const std::string &num);

@@ -257,3 +257,17 @@ std::string Contact::stringify(){
 	return result;
 }
 
+void Contact::setAll(const std::string loadData){
+	using std::size_t;
+	size_t location = loadData.find('|');
+	nameFirst = loadData.substr(0, location);
+	size_t location2 = loadData.find('|', location + 1);
+	nameLast = loadData.substr(location + 1, location2 - location - 1);
+	size_t location3 = loadData.find('|', location2 + 1);
+	phone = loadData.substr(location2 + 1, location3 - location2 - 1);
+	size_t location4 = loadData.find('|', location3 + 1);
+	email = loadData.substr(location3 + 1, location4 - location3 - 1);
+	address.setAll(loadData.substr(location4 + 1));
+	
+}
+

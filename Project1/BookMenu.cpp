@@ -44,7 +44,7 @@ void BookMenu::PrintMenu(const ContactBook& book) {
 		<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n"
 		<< "         Contact Book menu" << "\n"
 		<< "                 Name:" << "\n"
-		<< " " << book.getFisrtName() << " " << book.getLastName() << "\n"
+		<< " " << book.getFirstName() << " " << book.getLastName() << "\n"
 		<< " Select an option to continue:     " << "\n"
 		<< "   q. Add New Contact\n"
 		<< "   w. Delete Old Contact\n"

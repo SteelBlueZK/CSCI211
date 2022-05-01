@@ -8,7 +8,7 @@
 
 // fine place to use a namespace
 namespace BookMenu {
-	static bool CharCompare(const std::string&, char);
+	bool CharCompare(const std::string&, char);
 	
 	std::string SolicitInst(const std::string& text);
 	int SolicitName(ContactBook&);

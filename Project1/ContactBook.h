@@ -21,17 +21,22 @@ class ContactBook {
 		//constructors
 		ContactBook();
 
+		ContactBook(std::string loadData);
+
 		//sets the first parameter as the first name, 2nd paramerter as the last name.
 		ContactBook(std::string first, std::string last);
 
 		ContactBook(const ContactBook&);
+
+		// Adds all of parameter's contacts to the invoking object's contacts.
+		bool Merge(const ContactBook&);
 		
 		~ContactBook();
 		//interations
 
 		int getMaxSize() const;
 		int getSize() const;
-		std::string getFisrtName() const;
+		std::string getFirstName() const;
 		std::string getLastName() const;
 
 		//return true if contact successfully inserted. 
@@ -55,7 +60,10 @@ class ContactBook {
 		
 		// returns string that is the saved data of a file.
 		std::string stringify() const;
-		
+
+		// takes stringified CB and coppies it.
+		void setAll(std::string stringified);
+
 		// sorts array lexographically
 		void SelectionSort();
 

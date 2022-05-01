@@ -22,16 +22,50 @@ ContactBook::ContactBook(string first, string last):
 	MaxSize = 0;
 }
 
+ContactBook::ContactBook(const ContactBook& a) {
+	fName = a.fName;
+	lName = a.lName;
+	contacts = NULL;
+	CopyContacts(a);
+}
+
+ContactBook::ContactBook(std::string loadData) {
+	using std::size_t;
+	contacts = NULL;
+	size = 0;
+	MaxSize = 0;
+	//end of the simple part
+	size_t last, curr;
+	last = 0;
+	curr = loadData.find('|', last);
+	fName = loadData.substr(last, curr - last);
+	last = curr + 1;
+	curr = loadData.find('\n', last);
+	lName = loadData.substr(last, curr - last);
+	last = curr + 1;
+	Contact c;
+	while (loadData.substr(last).compare("endofbook|") != 0) {
+		//std::cout << loadData.substr(last).length() << std::endl;
+		if (loadData.substr(last).length() <= 11) {
+			//std::cerr << "FAILURE IN LOADING CONTACTBOOK FROM STRING";
+			//scuffed
+			break;
+		}
+		curr = loadData.find('\n', last);
+		string stringc(loadData.substr(last, curr - last));
+		//std::cout <<"stringified thing to set" << stringc << std::endl;
+		c.setAll(stringc);
+		addContact(c);
+		last = curr + 1;
+	}
+	SelectionSort();
+}
+
 //precondition, all poionters in array after size-1 index are NULL
 bool ContactBook::addContact(){
-	if(size >= MaxSize){
-		Grow();
-	}
-	//TODO make sure I'm not fucking memory leaking here
-	contacts[size] = new Contact();
-	std::cin >> *contacts[size];
-	size++;
-	return true;
+	Contact c;
+	std::cin >> c;
+	return addContact(c);
 }
 
 //precondition, all poionters in array after size-1 index are NULL
@@ -40,7 +74,23 @@ bool ContactBook::addContact(Contact c){
 		Grow();
 	}
 	//TODO make sure I'm not fucking memory leaking here
-	contacts[size] = new Contact(c);
+	Contact* insert = new Contact(c);
+	Contact* temp;
+	int x(-1);
+	for (int i = size-1; i >= 0; i-- ){
+		if (*insert < *contacts[i]) {
+			x = i;
+		}
+	}
+	if (x == -1) {
+		contacts[size] = insert;
+	} else {
+		for (int i = x; i < size + 1; i++){
+			temp = contacts[i];
+			contacts[i] = insert;
+			insert = temp;
+		}
+	}
 	size++;
 	return true;
 }
@@ -67,7 +117,9 @@ bool ContactBook::deleteContact(int v){
 		return false;
 	}
 	delete contacts[v];
-	contacts[v] = contacts[size-1];
+	for (int i = v; i < size - 1; i++){
+		contacts[i] = contacts[i+1];
+	}
 	contacts[size-1] = NULL;
 	size--;
 	return true;
@@ -98,12 +150,6 @@ void ContactBook::CopyContacts(const ContactBook& a){
 	}
 }
 
-ContactBook::ContactBook(const ContactBook& a) {
-	fName = a.fName;
-	lName = a.lName;
-	CopyContacts(a);
-}
-
 void ContactBook::NullContacts(){
 	if (contacts != NULL) {
 		for (int i = 0; i < MaxSize; ++i) {
@@ -114,6 +160,8 @@ void ContactBook::NullContacts(){
 		}
 		delete [] contacts;
 	}
+	size = 0;
+	MaxSize = 0;
 }
 
 ContactBook::~ContactBook() {
@@ -146,7 +194,8 @@ void ContactBook::Grow(int x){
 	for (int i = size; i < MaxSize; i++) {
 		temp[i] = NULL;
 	}
-	delete [] contacts;
+	if (contacts != NULL)
+		delete [] contacts;
 	contacts = temp;
 }
 
@@ -158,7 +207,7 @@ int ContactBook::getSize() const{
 	return size;
 }
 
-std::string ContactBook::getFisrtName() const{
+std::string ContactBook::getFirstName() const{
 	return fName;
 }
 
@@ -185,7 +234,7 @@ std::string ContactBook::stringify() const {
 	for (int i = 0; i < size; ++i) {
 		returnvalue.append(contacts[i]->stringify() + "\n");
 	}
-	returnvalue.append("endofbook|\n");
+	returnvalue.append("endofbook|");
 	return returnvalue;
 }
 
@@ -205,5 +254,45 @@ void ContactBook::SelectionSort() {
 			contacts[i] = store;
 		}
 	}
+}
+
+void ContactBook::setAll(std::string loadData){
+	using std::size_t;
+	NullContacts();
+	//end of the simple part
+	size_t last, curr;
+	last = 0;
+	curr = loadData.find('|', last);
+	fName = loadData.substr(last, curr - last);
+	last = curr + 1;
+	curr = loadData.find('\n', last);
+	lName = loadData.substr(last, curr - last);
+	last = curr + 1;
+	Contact c;
+	while (loadData.substr(last).compare("endofbook|") != 0) {
+		//std::cout << loadData.substr(last).length() << std::endl;
+		if (loadData.substr(last).length() <= 11) {
+			//std::cerr << "FAILURE IN LOADING CONTACTBOOK FROM STRING";
+			//scuffed
+			break;
+		}
+		curr = loadData.find('\n', last);
+		string stringc(loadData.substr(last, curr - last));
+		//std::cout <<"stringified thing to set" << stringc << std::endl;
+		c.setAll(stringc);
+		addContact(c);
+		last = curr + 1;
+	}
+	SelectionSort();
+}
+
+bool ContactBook::Merge(const ContactBook& cb){
+	if (MaxSize - size < cb.size) {
+		Grow(cb.size);
+	}
+	for (int i = 0; i < cb.size; i++) {
+		addContact(cb[i]);
+	}
+	return true;
 }
 
