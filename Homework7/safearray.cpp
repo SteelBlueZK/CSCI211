@@ -1,4 +1,4 @@
-#include "SafeArray.h"
+#include "safearray.h"
 #include <cstdlib>
 #include <iostream>
 
