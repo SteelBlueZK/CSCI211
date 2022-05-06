@@ -7,7 +7,12 @@ using namespace std;
 
 int main(){
 	cout << setprecision(4);
-	int ROWS(10), COLS(15);
+	int ROWS, COLS;
+	cout << "enter number of rows: ";
+	cin >> ROWS;
+	cout << "enter number of colunms:";
+	cin >> COLS;
+	cout << endl;
 	SafeMatrix<int> x(ROWS,COLS);
 	cout << "number of rows is " << ROWS
 		<< " and number of colunms is "<< COLS << endl;
@@ -24,8 +29,13 @@ int main(){
 		}
 		cout << endl;
 	}
-	cout << "the value of row 5(odd), colunm 10 should be row + colunm: " << x[5][10] << "\n";
-	cout << "the value of row 6(even), colunm 10 should be row * colunm: " << x[6][10] << "\n";
+	cout << "Odd rows are Row# + Colunm#, even rows are Row# * Colunm#.\n";
+	int tempr = ROWS-1, tempc = COLS-1;
+	tempr = tempr - tempr/3;
+       	tempc = tempc - tempc/3;
+	cout << "the value of row "<<tempr<<", colunm "<<tempc<<" is: " << x[tempr][tempc] << "\n";
+	tempr = fmin(tempr + 1, ROWS - 1);//implicit double to int cast
+	cout << "the value of row "<<tempr<<", colunm "<<tempc<<" is: " << x[tempr][tempc] << "\n";
 	cout << "example of double:\n";
 	SafeMatrix<double> y(ROWS,COLS);
 	cout << "number of rows is " << ROWS
@@ -40,7 +50,8 @@ int main(){
 		}
 		cout << endl;
 	}
-	cout << "the value of row 6, colunm 10 should be (sqrt(row) *2colunm): " << y[6][10] << "\n";
+	cout << "Values should be (sqrt(row) *2colunm).\n";
+	cout << "the value of row "<<tempr<<", colunm "<<tempc<<" is: " << y[tempr][tempc] << "\n";
 
 	return 0;
 }

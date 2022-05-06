@@ -23,7 +23,7 @@ SafeMatrix<T>::SafeMatrix() : matrix(){
 }
 
 template <class T>
-SafeMatrix<T>::SafeMatrix(int rows, int colunms) : matrix( rows) {
+SafeMatrix<T>::SafeMatrix(int rows, int colunms) : matrix(rows) {
 	for (int i = 0; i < rows; i++) {
 		matrix[i] = SafeArray<T>(colunms);
 	}
@@ -55,6 +55,7 @@ SafeMatrix<T>::SafeMatrix(const SafeMatrix<T>& other) : matrix(other.matrix){
 template <class T>
 SafeMatrix<T>& SafeMatrix<T>::operator =(const SafeMatrix<T>& other) {
 	matrix = other.matrix;
+	return this;
 }
 
 
