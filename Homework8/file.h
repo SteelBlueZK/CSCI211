@@ -12,6 +12,7 @@ class File {
 		void setExt(std::string replace);
 	public:
 		File();
+		File(std::string name);
 		std::string getName();
 		std::string getExt();
 		virtual int getSize();

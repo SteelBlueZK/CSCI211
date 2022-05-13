@@ -8,6 +8,10 @@ File::File() : name("NULL"), ext("NULL")
 {
 }
 
+File::File(string x) : name(x), ext("") 
+{
+}
+
 void File::setName(string replace){
 	name = replace;
 }
@@ -29,5 +33,6 @@ string File::getExt(){
 }
 
 void File::displayProperties(){
-	cout << "NULL" << endl;
+	cout << name << ext << endl;
+	cout << "Filesize is: " << getSize() << " bytes" << endl;
 }
