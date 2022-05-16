@@ -17,7 +17,7 @@ int TextFile::getSize(){
 }
 
 void TextFile::displayProperties(){
-	File::displayProperties();
+	propertiesHeader();
 	cout << "Number of characters in document: " << charCount << endl;
 }
 

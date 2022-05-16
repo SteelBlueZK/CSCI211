@@ -20,10 +20,6 @@ void File::setExt(string replace){
 	ext = replace;
 }
 
-int File::getSize(){
-	return 0;
-}
-
 string File::getName(){
 	return name;
 }
@@ -32,7 +28,7 @@ string File::getExt(){
 	return ext;
 }
 
-void File::displayProperties(){
+void File::propertiesHeader(){
 	cout << name << ext << endl;
 	cout << "Filesize is: " << getSize() << " bytes" << endl;
 }

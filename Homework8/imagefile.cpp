@@ -18,7 +18,7 @@ int ImageFile::getSize() {
 }
 
 void ImageFile::displayProperties() {
-	File::displayProperties();
+	propertiesHeader();
 	cout << "Image Dimentions: " << xpx << "x" << ypx << endl
 		<< "Color Depth: " << clrdpth << "(" << ceil(double(clrdpth)/8) << "bytes per pixel)" << endl;
 }
