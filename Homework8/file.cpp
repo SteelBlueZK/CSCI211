@@ -36,3 +36,7 @@ void File::displayProperties(){
 	cout << name << ext << endl;
 	cout << "Filesize is: " << getSize() << " bytes" << endl;
 }
+
+File::~File(){
+}
+

@@ -14,6 +14,7 @@ int main(){
 	myFiles[3] = new TextFile("grocerylist",632);
 	myFiles[4] = new ImageFile("Brother'sFail", 1800,4000,64);
 	for (File* i : myFiles){
+		cout << "Properties for file " << i << "\n";
 		i->displayProperties();
 		cout << endl;
 		delete i;

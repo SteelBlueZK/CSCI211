@@ -13,6 +13,7 @@ class File {
 	public:
 		File();
 		File(std::string name);
+		virtual ~File();
 		std::string getName();
 		std::string getExt();
 		virtual int getSize();
