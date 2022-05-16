@@ -7,9 +7,8 @@ TextFile::TextFile() : File(), charCount(0)
 	setExt(".txt");
 }
 
-TextFile::TextFile(std::string name, int numofchar) : File(), charCount(numofchar)
+TextFile::TextFile(std::string name, int numofchar) : File(name), charCount(numofchar)
 {
-	setName(name);
 	setExt(".txt");
 }
 
