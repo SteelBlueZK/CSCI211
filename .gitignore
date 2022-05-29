@@ -34,3 +34,8 @@
 # swaps
 *.swp
 *.swo
+
+# other
+*.doc
+*.pdf
+*~
